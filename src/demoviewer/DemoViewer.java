@@ -7,6 +7,17 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class DemoViewer {
+    public static Color getShade(Color color, double shade) {
+        double redLinear = Math.pow(color.getRed(), 2.4) * shade;
+        double greenLinear = Math.pow(color.getGreen(), 2.4) * shade;
+        double blueLinear = Math.pow(color.getBlue(), 2.4) * shade;
+
+        int red = (int) Math.pow(redLinear, 1/2.4);
+        int green = (int) Math.pow(greenLinear, 1/2.4);
+        int blue = (int) Math.pow(blueLinear, 1/2.4);
+
+        return new Color(red, green, blue);
+    }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame();
@@ -122,21 +133,9 @@ public class DemoViewer {
                             }
                         }
                     }
-
                 }
 
                 g2.drawImage(img, 0, 0, null);
-            }
-            Color getShade(Color color, double shade) {
-                double redLinear = Math.pow(color.getRed(), 2.4) * shade;
-                double greenLinear = Math.pow(color.getGreen(), 2.4) * shade;
-                double blueLinear = Math.pow(color.getBlue(), 2.4) * shade;
-
-                int red = (int) Math.pow(redLinear, 1/2.4);
-                int green = (int) Math.pow(greenLinear, 1/2.4);
-                int blue = (int) Math.pow(blueLinear, 1/2.4);
-
-                return new Color(red, green, blue);
             }
 
         };
